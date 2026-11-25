@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en" data-theme="kraft">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mosaic — a scrapbook photo collage &amp; poster maker</title>
+<meta name="description" content="Mosaic is a free, private, in-browser photo collage and poster maker. Grid, freeform, polaroid scatter and magazine-cover layouts, canvas filters, washi-tape stickers, frames, crop with pinch, and high-res print exports (A4, 4x6). Your photos never leave your device.">
+<meta property="og:title" content="Mosaic — scrapbook collage &amp; poster maker">
+<meta property="og:description" content="Make collages and posters with washi tape, polaroids and film grain. 100% private: photos stay on your device.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kumarnikhildeveloperaccount.github.io/mosaic/">
+<meta name="theme-color" content="#c8a27c">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/studio.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-photo" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="10" r="2" fill="currentColor"/><path d="M4 18l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="3" width="8" height="6" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="15" width="8" height="6" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><circle cx="9" cy="10" r="6" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="15" cy="10" r="6" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="15" r="6" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4L2.8 9.5l6.4-.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-text" viewBox="0 0 24 24"><path d="M5 6V4h14v2M12 4v16M9 20h6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-frame" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="2"/><rect x="6.5" y="6.5" width="11" height="9" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18c1.3 0 2-.8 2-1.8 0-1.3-1.2-1.6-1.2-2.8 0-1 .8-1.6 1.8-1.6H17a4 4 0 004-4C21 6.5 17 3 12 3z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="7.5" cy="11" r="1.4" fill="currentColor"/><circle cx="10" cy="7" r="1.4" fill="currentColor"/><circle cx="15" cy="7" r="1.4" fill="currentColor"/></symbol>
+    <symbol id="i-crop" viewBox="0 0 24 24"><path d="M6 2v16h16M2 6h16v16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 7L4 12l5 5M4 12h10a6 6 0 010 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 -3)"/></symbol>
+    <symbol id="i-redo" viewBox="0 0 24 24"><path d="M15 7l5 5-5 5M20 12H10a6 6 0 000 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 -3)"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6.5A1.5 1.5 0 014.5 5H10l2 2h7.5A1.5 1.5 0 0121 8.5v9a1.5 1.5 0 01-1.5 1.5h-15A1.5 1.5 0 013 17.5z" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-theme" viewBox="0 0 24 24"><path d="M12 3a9 9 0 109 9c-5 0-9-4-9-9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path class="wave" d="M16 9a4 4 0 010 6M18.5 6.5a7.5 7.5 0 010 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="mute" d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6M12 7.5v.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V5a1 1 0 00-1-1H5a1 1 0 00-1 1v10a1 1 0 001 1h3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><rect x="9" y="3" width="12" height="12" rx="1.5" fill="currentColor" opacity=".9"/><rect x="3" y="9" width="12" height="12" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><rect x="9" y="3" width="12" height="12" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="9" width="12" height="12" rx="1.5" fill="currentColor" opacity=".9"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-dice" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/><circle cx="15.5" cy="8.5" r="1.5" fill="currentColor"/><circle cx="8.5" cy="15.5" r="1.5" fill="currentColor"/></symbol>
+    <symbol id="i-clip" viewBox="0 0 24 48"><path d="M15 14v19a4 4 0 01-8 0V8a6 6 0 0112 0v28a8 8 0 01-16 0V12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#stageCanvas">Skip to the collage canvas</a>
+
+<div id="intro" class="intro" aria-hidden="true">
+  <div class="intro-sheet">
+    <span class="intro-tape t1"></span><span class="intro-tape t2"></span>
+    <h1 class="intro-title"><span>M</span><span>o</span><span>s</span><span>a</span><span>i</span><span>c</span></h1>
+    <p class="intro-sub">cutting, sticking &amp; un-sticking since page one</p>
+  </div>
+</div>
+
+<div class="app" id="app">
+  <header class="topbar">
+    <button id="logoBtn" class="logo" type="button" aria-label="Mosaic logo. Some say it is just a paper clip.">
+      <svg class="logo-clip" aria-hidden="true"><use href="#i-clip"/></svg>
+      <span class="logo-word">Mosaic</span>
+    </button>
+    <label class="proj-name">
+      <span class="sr-only">Project name</span>
+      <input id="projName" type="text" maxlength="60" value="Untitled scrapbook" autocomplete="off" spellcheck="false">
+    </label>
+    <span id="saveStatus" class="save-status" role="status" aria-live="polite">Glue drying…</span>
+    <div class="top-actions">
+      <button id="undoBtn" class="ibtn" type="button" aria-label="Undo (Ctrl+Z)" title="Undo"><svg><use href="#i-undo"/></svg></button>
+      <button id="redoBtn" class="ibtn" type="button" aria-label="Redo (Ctrl+Shift+Z)" title="Redo"><svg><use href="#i-redo"/></svg></button>
+      <button id="projectsBtn" class="ibtn" type="button" aria-label="Projects and storage" title="Projects &amp; storage"><svg><use href="#i-folder"/></svg><span class="ilabel">Projects</span></button>
+      <button id="themeBtn" class="ibtn" type="button" aria-label="Change theme" title="Change theme"><svg><use href="#i-theme"/></svg></button>
+      <button id="soundBtn" class="ibtn" type="button" aria-pressed="false" aria-label="Sound effects (off)" title="Sound effects"><svg><use href="#i-sound"/></svg></button>
+      <button id="aboutBtn" class="ibtn" type="button" aria-label="About Mosaic" title="About"><svg><use href="#i-info"/></svg></button>
+      <button id="exportBtn" class="btn btn-primary" type="button"><svg><use href="#i-download"/></svg><span>Export</span></button>
+    </div>
+  </header>
+
+  <main class="studio" id="studio">
+    <nav class="tools" aria-label="Tools" role="tablist">
+      <button class="tool" role="tab" type="button" data-pane="photos" aria-selected="true" aria-controls="pane-photos"><svg><use href="#i-photo"/></svg><span>Photos</span></button>
+      <button class="tool" role="tab" type="button" data-pane="layout" aria-selected="false" aria-controls="pane-layout"><svg><use href="#i-grid"/></svg><span>Layout</span></button>
+      <button class="tool" role="tab" type="button" data-pane="filters" aria-selected="false" aria-controls="pane-filters"><svg><use href="#i-filter"/></svg><span>Filters</span></button>
+      <button class="tool" role="tab" type="button" data-pane="crop" aria-selected="false" aria-controls="pane-crop"><svg><use href="#i-crop"/></svg><span>Crop</span></button>
+      <button class="tool" role="tab" type="button" data-pane="stickers" aria-selected="false" aria-controls="pane-stickers"><svg><use href="#i-star"/></svg><span>Stickers</span></button>
+      <button class="tool" role="tab" type="button" data-pane="text" aria-selected="false" aria-controls="pane-text"><svg><use href="#i-text"/></svg><span>Text</span></button>
+      <button class="tool" role="tab" type="button" data-pane="frames" aria-selected="false" aria-controls="pane-frames"><svg><use href="#i-frame"/></svg><span>Frames</span></button>
+      <button class="tool" role="tab" type="button" data-pane="bg" aria-selected="false" aria-controls="pane-bg"><svg><use href="#i-palette"/></svg><span>Paper</span></button>
+    </nav>
+
+    <section class="panel" id="panel" aria-label="Tool options">
+      <span class="panel-tape" aria-hidden="true"></span>
+
+      <div class="pane" id="pane-photos" role="tabpanel">
+        <h2 class="pane-h">Photos</h2>
+        <p class="hint">Your photos never leave this device. Not even for a coffee.</p>
+        <div class="btn-row">
+          <button id="addPhotosBtn" class="btn btn-primary" type="button"><svg><use href="#i-plus"/></svg><span>Add photos</span></button>
+          <button id="sampleBtn" class="btn" type="button"><svg><use href="#i-dice"/></svg><span>Sample shots</span></button>
+        </div>
+        <p class="hint small">Tip: drag &amp; drop images anywhere on the table. Tap a photo below to stick it on again.</p>
+        <div id="photoTray" class="tray" aria-label="Photos in this project"></div>
+        <p id="trayEmpty" class="empty-note">The shoebox is empty. Somewhere, a camera roll weeps.</p>
+      </div>
+
+      <div class="pane" id="pane-layout" role="tabpanel" hidden>
+        <h2 class="pane-h">Layout</h2>
+        <div class="layout-cards">
+          <button class="layout-card" type="button" data-layout="grid" aria-pressed="false"><span class="lc-art lc-grid" aria-hidden="true"><i></i><i></i><i></i><i></i></span><b>Grid</b><small>neat &amp; tidy</small></button>
+          <button class="layout-card" type="button" data-layout="freeform" aria-pressed="false"><span class="lc-art lc-free" aria-hidden="true"><i></i><i></i><i></i></span><b>Freeform</b><small>chaos, curated</small></button>
+          <button class="layout-card" type="button" data-layout="scatter" aria-pressed="false"><span class="lc-art lc-scatter" aria-hidden="true"><i></i><i></i><i></i></span><b>Polaroid scatter</b><small>shake it</small></button>
+          <button class="layout-card" type="button" data-layout="magazine" aria-pressed="false"><span class="lc-art lc-mag" aria-hidden="true"><i></i><em>MOSAIC</em></span><b>Magazine cover</b><small>you, famous</small></button>
+        </div>
+        <label class="field"><span>Paper size</span>
+          <select id="paperSel"></select>
+        </label>
+        <div class="field-grid">
+          <label class="field"><span>Gap <output id="gapOut">16</output></span><input id="gapRange" type="range" min="0" max="60" value="16"></label>
+          <label class="field"><span>Margin <output id="marginOut">40</output></span><input id="marginRange" type="range" min="0" max="120" value="40"></label>
+        </div>
+        <label class="field"><span>Grid columns</span>
+          <select id="colsSel"><option value="0">Auto (we'll squint)</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+        </label>
+        <button id="shuffleBtn" class="btn wide" type="button"><svg><use href="#i-dice"/></svg><span>Shuffle the deck</span></button>
+      </div>
+
+      <div class="pane" id="pane-filters" role="tabpanel" hidden>
+        <h2 class="pane-h">Filters</h2>
+        <p id="filterNeedSel" class="need-sel">Select a photo first. Filters are shy around empty paper.</p>
+        <div id="filterChips" class="chips"></div>
+        <label class="field"><span>Strength <output id="filterAmtOut">100%</output></span><input id="filterAmt" type="range" min="0" max="100" value="100"></label>
+        <div id="duoRow" class="field-grid" hidden>
+          <label class="field"><span>Shadows</span><input id="duoA" type="color" value="#2b1f5c"></label>
+          <label class="field"><span>Highlights</span><input id="duoB" type="color" value="#ffb38a"></label>
+        </div>
+        <label class="field"><span>Extra film grain <output id="grainOut">0%</output></span><input id="grainAmt" type="range" min="0" max="100" value="0"></label>
+        <button id="filterAllBtn" class="btn wide" type="button"><span>Apply to all photos</span></button>
+      </div>
+
+      <div class="pane" id="pane-crop" role="tabpanel" hidden>
+        <h2 class="pane-h">Crop &amp; rotate</h2>
+        <p id="cropNeedSel" class="need-sel">Select something first. We can't rotate the void (we tried).</p>
+        <button id="cropToggle" class="btn wide" type="button" aria-pressed="false"><svg><use href="#i-crop"/></svg><span>Crop mode: off</span></button>
+        <p class="hint small">In crop mode: drag to pan, pinch or scroll to zoom. Out of crop mode: pinch with two fingers to scale &amp; rotate.</p>
+        <label class="field"><span>Zoom <output id="cropZoomOut">1.0×</output></span><input id="cropZoom" type="range" min="100" max="600" value="100"></label>
+        <div class="btn-row">
+          <button id="rotLBtn" class="btn" type="button" aria-label="Rotate image 90 degrees left">⟲ 90°</button>
+          <button id="rotRBtn" class="btn" type="button" aria-label="Rotate image 90 degrees right">⟳ 90°</button>
+          <button id="flipBtn" class="btn" type="button" aria-label="Flip image horizontally">⇋ Flip</button>
+        </div>
+        <label class="field"><span>Tilt <output id="itemRotOut">0°</output></span><input id="itemRot" type="range" min="-180" max="180" value="0"></label>
+        <label class="field"><span>Opacity <output id="opacityOut">100%</output></span><input id="opacityRange" type="range" min="10" max="100" value="100"></label>
+        <button id="resetCropBtn" class="btn wide" type="button"><span>Reset crop &amp; tilt</span></button>
+      </div>
+
+      <div class="pane" id="pane-stickers" role="tabpanel" hidden>
+        <h2 class="pane-h">Stickers</h2>
+        <div id="stickerCats" class="seg" role="group" aria-label="Sticker categories"></div>
+        <div id="stickerGrid" class="sticker-grid"></div>
+        <label id="stickerColorRow" class="field inline"><span>Recolour selected sticker</span><input id="stickerColor" type="color" value="#f28fa5"></label>
+      </div>
+
+      <div class="pane" id="pane-text" role="tabpanel" hidden>
+        <h2 class="pane-h">Text</h2>
+        <label class="field"><span>Words (select a text item to edit it)</span>
+          <textarea id="textInput" rows="3" maxlength="400">best day ever</textarea>
+        </label>
+        <div class="field-grid">
+          <label class="field"><span>Font</span><select id="fontSel"></select></label>
+          <label class="field"><span>Style</span>
+            <select id="textStyleSel">
+              <option value="plain">Plain</option><option value="tape">Washi label</option><option value="tag">Gift tag</option><option value="highlight">Highlighter</option><option value="outline">Sticker outline</option><option value="shadow">Drop shadow</option>
+            </select>
+          </label>
+          <label class="field"><span>Ink</span><input id="textColor" type="color" value="#2b2420"></label>
+          <label class="field"><span>Label colour</span><input id="textBgColor" type="color" value="#ffe08a"></label>
+          <label class="field"><span>Align</span>
+            <select id="textAlignSel"><option value="center">Centre</option><option value="left">Left</option><option value="right">Right</option></select>
+          </label>
+          <label class="field"><span>Size <output id="textSizeOut">64</output></span><input id="textSize" type="range" min="16" max="240" value="64"></label>
+        </div>
+        <button id="addTextBtn" class="btn btn-primary wide" type="button"><svg><use href="#i-plus"/></svg><span>Add text</span></button>
+      </div>
+
+      <div class="pane" id="pane-frames" role="tabpanel" hidden>
+        <h2 class="pane-h">Frames</h2>
+        <p id="frameNeedSel" class="need-sel">Select a photo to frame. Every photo deserves a little border control.</p>
+        <div id="frameGrid" class="frame-grid"></div>
+        <label id="captionRow" class="field"><span>Polaroid caption</span><input id="captionInput" type="text" maxlength="40" placeholder="summer '26"></label>
+        <button id="frameAllBtn" class="btn wide" type="button"><span>Frame all photos like this</span></button>
+      </div>
+
+      <div class="pane" id="pane-bg" role="tabpanel" hidden>
+        <h2 class="pane-h">Paper &amp; background</h2>
+        <div id="bgGrid" class="bg-grid"></div>
+        <div class="field-grid">
+          <label class="field"><span>Colour A</span><input id="bgA" type="color" value="#f6efe0"></label>
+          <label class="field"><span>Colour B</span><input id="bgB" type="color" value="#e4572e"></label>
+        </div>
+        <div id="paletteRow" class="palettes" aria-label="Palettes"></div>
+        <button id="bgRandomBtn" class="btn btn-primary wide" type="button"><svg><use href="#i-dice"/></svg><span>Generate a background</span></button>
+      </div>
+    </section>
+
+    <div class="stage-wrap" id="stageWrap">
+      <div id="selBar" class="selbar" role="toolbar" aria-label="Selected item" hidden>
+        <button id="selCropBtn" class="ibtn" type="button" aria-label="Crop selected photo" title="Crop"><svg><use href="#i-crop"/></svg></button>
+        <button id="selFwdBtn" class="ibtn" type="button" aria-label="Bring forward" title="Bring forward (])"><svg><use href="#i-up"/></svg></button>
+        <button id="selBackBtn" class="ibtn" type="button" aria-label="Send backward" title="Send backward ([)"><svg><use href="#i-down"/></svg></button>
+        <button id="selDupBtn" class="ibtn" type="button" aria-label="Duplicate" title="Duplicate (Ctrl+D)"><svg><use href="#i-copy"/></svg></button>
+        <button id="selDelBtn" class="ibtn danger" type="button" aria-label="Delete" title="Delete"><svg><use href="#i-trash"/></svg></button>
+      </div>
+      <div class="stage" id="stage">
+        <span class="stage-tape st1" aria-hidden="true"></span>
+        <span class="stage-tape st2" aria-hidden="true"></span>
+        <canvas id="stageCanvas" tabindex="0" role="img" aria-label="Collage canvas. Use comma and period to pick items, arrow keys to nudge, Delete to remove."></canvas>
+        <div id="emptyState" class="empty-state">
+          <div class="empty-card">
+            <span class="empty-clip" aria-hidden="true"></span>
+            <h2>This page is suspiciously tidy.</h2>
+            <p>Drop photos here, or borrow some of ours. We promise they're very photogenic gradients.</p>
+            <div class="btn-row center">
+              <button id="emptyAddBtn" class="btn btn-primary" type="button"><svg><use href="#i-plus"/></svg><span>Add photos</span></button>
+              <button id="emptySampleBtn" class="btn" type="button"><svg><use href="#i-dice"/></svg><span>Sample shots</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="dropHint" class="drop-hint" aria-hidden="true"><span>Drop it like it's hot (it stays local)</span></div>
+    </div>
+  </main>
+  <p id="srStatus" class="sr-only" aria-live="polite"></p>
+</div>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <p class="foot-made">Designed &amp; built by <strong>Kumar Nikhil</strong></p>
+    <nav class="foot-links" aria-label="Creator links">
+      <a href="https://kumarnikhildeveloperaccount.github.io/" target="_blank" rel="noopener">Portfolio</a>
+      <a href="https://www.linkedin.com/in/kumar-nikhil-1000a9192/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:nkashyapnikhilnk@gmail.com">Email</a>
+      <a href="https://kumarnikhildeveloperaccount.github.io/" target="_blank" rel="noopener">More projects by Kumar Nikhil →</a>
+    </nav>
+    <p class="foot-grat">With gratitude to God — Om Namah Paarvati Pateh, Har Har Mahadev. May God bless you and everyone.</p>
+    <p class="foot-note">No accounts. No uploads. No trackers. Just glue (the digital, non-toxic kind).</p>
+  </div>
+</footer>
+
+<dialog id="projectsDlg" class="sheet" aria-labelledby="projectsTitle">
+  <span class="sheet-clip" aria-hidden="true"></span>
+  <div class="sheet-head">
+    <h2 id="projectsTitle">Your scrapbooks</h2>
+    <button class="ibtn" type="button" data-close aria-label="Close"><svg><use href="#i-close"/></svg></button>
+  </div>
+  <div class="btn-row">
+    <button id="newProjBtn" class="btn btn-primary" type="button"><svg><use href="#i-plus"/></svg><span>New project</span></button>
+    <button id="importProjBtn" class="btn" type="button"><span>Import .mosaic</span></button>
+    <button id="exportProjBtn" class="btn" type="button"><span>Back up this project</span></button>
+  </div>
+  <div id="projList" class="proj-list" aria-live="polite"></div>
+  <section class="storage" aria-labelledby="storageTitle">
+    <h3 id="storageTitle">Storage shoebox</h3>
+    <div id="quotaBar" class="quota" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Storage used"><span id="quotaFill"></span></div>
+    <p id="quotaText" class="hint small">Measuring the shoebox…</p>
+    <div class="btn-row">
+      <button id="persistBtn" class="btn" type="button"><span>Ask browser to keep my data</span></button>
+      <button id="cleanOrphansBtn" class="btn" type="button"><span>Remove unused photos</span></button>
+    </div>
+    <div class="clear-row">
+      <label class="field"><span>Clear projects not edited in</span>
+        <select id="clearAgeSel">
+          <option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option><option value="365">a year</option><option value="all">all time (except this one)</option>
+        </select>
+      </label>
+      <button id="clearOldBtn" class="btn danger" type="button"><svg><use href="#i-trash"/></svg><span>Clear old projects</span></button>
+    </div>
+  </section>
+</dialog>
+
+<dialog id="exportDlg" class="sheet" aria-labelledby="exportTitle">
+  <span class="sheet-clip" aria-hidden="true"></span>
+  <div class="sheet-head">
+    <h2 id="exportTitle">Print it, post it, frame it</h2>
+    <button class="ibtn" type="button" data-close aria-label="Close"><svg><use href="#i-close"/></svg></button>
+  </div>
+  <label class="field"><span>Size</span><select id="expSize"></select></label>
+  <div class="field-grid">
+    <label class="field"><span>Format</span>
+      <select id="expFormat"><option value="png">PNG (lossless)</option><option value="jpeg">JPEG (smaller)</option></select>
+    </label>
+    <label class="field" id="expQualityRow"><span>JPEG quality <output id="expQualityOut">92</output></span><input id="expQuality" type="range" min="50" max="100" value="92"></label>
+  </div>
+  <p id="expInfo" class="hint small"></p>
+  <button id="expGo" class="btn btn-primary wide" type="button"><svg><use href="#i-download"/></svg><span>Develop &amp; download</span></button>
+  <p id="expProgress" class="hint small" role="status" aria-live="polite"></p>
+</dialog>
+
+<dialog id="aboutDlg" class="sheet" aria-labelledby="aboutTitle">
+  <span class="sheet-clip" aria-hidden="true"></span>
+  <div class="sheet-head">
+    <h2 id="aboutTitle">About / Made by</h2>
+    <button class="ibtn" type="button" data-close aria-label="Close"><svg><use href="#i-close"/></svg></button>
+  </div>
+  <p><strong>Mosaic</strong> is a scrapbook-style collage &amp; poster maker that runs entirely in your browser. Photos are stored as original files in your browser's IndexedDB, right next to your project — nothing is uploaded, ever.</p>
+  <ul class="about-list">
+    <li>Layouts: grid, freeform, polaroid scatter, magazine cover</li>
+    <li>Canvas filters: vintage, duotone, film grain, B&amp;W, warm, cool, faded</li>
+    <li>Washi tape, paper clips, doodles, text labels, frames &amp; generated paper</li>
+    <li>Exports: PNG/JPEG up to A4 at 300&nbsp;dpi and 4×6&nbsp;in prints</li>
+    <li>Shortcuts: Ctrl+Z / Ctrl+Shift+Z, Ctrl+D duplicate, Delete, arrows to nudge, [ and ] to reorder, Esc to deselect</li>
+  </ul>
+  <p class="hint">Why did the photo go to the scrapbook? It needed some space to develop.</p>
+  <div class="made-by">
+    <p>Designed &amp; built by <strong>Kumar Nikhil</strong></p>
+    <p class="foot-links">
+      <a href="https://kumarnikhildeveloperaccount.github.io/" target="_blank" rel="noopener">Portfolio</a>
+      <a href="https://www.linkedin.com/in/kumar-nikhil-1000a9192/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:nkashyapnikhilnk@gmail.com">Email</a>
+      <a href="https://kumarnikhildeveloperaccount.github.io/" target="_blank" rel="noopener">More projects by Kumar Nikhil →</a>
+    </p>
+    <p class="foot-grat">With gratitude to God — Om Namah Paarvati Pateh, Har Har Mahadev. May God bless you and everyone.</p>
+  </div>
+</dialog>
+
+<div id="toasts" class="toasts" aria-live="polite"></div>
+<input id="fileInput" type="file" accept="image/*" multiple hidden>
+<input id="importInput" type="file" accept=".json,.mosaic,application/json" hidden>
+
+<script src="js/core.js" defer></script>
+<script src="js/art.js" defer></script>
+<script src="js/filters.js" defer></script>
+<script src="js/render.js" defer></script>
+<script src="js/editor.js" defer></script>
+<script src="js/ui.js" defer></script>
+<script src="js/app.js" defer></script>
+</body>
+</html>

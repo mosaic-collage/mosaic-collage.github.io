@@ -1,0 +1,11 @@
+{
+  "name": "Mosaic — scrapbook collage & poster maker",
+  "short_name": "Mosaic",
+  "description": "Private, in-browser photo collage & poster maker with washi tape, polaroids and print exports.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#c8a27c",
+  "theme_color": "#c8a27c",
+  "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
